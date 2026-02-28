@@ -299,6 +299,15 @@ export default function ClaimPage() {
           {/* Analysis progress */}
           <AnalysisProgress steps={analysisSteps} />
 
+          {/* Shimmer skeleton while analysing */}
+          {!analysis && analysisSteps.length > 0 && analysisSteps.length < 5 && (
+            <div className="space-y-3 animate-fade-in">
+              <div className="h-20 rounded-xl bg-zinc-900 border border-zinc-800 shimmer" />
+              <div className="h-12 rounded-lg bg-zinc-900 border border-zinc-800 shimmer" style={{ animationDelay: "200ms" }} />
+              <div className="h-12 rounded-lg bg-zinc-900 border border-zinc-800 shimmer" style={{ animationDelay: "400ms" }} />
+            </div>
+          )}
+
           {/* Result */}
           {analysis && (
             <div className="animate-slide-in-up space-y-4">

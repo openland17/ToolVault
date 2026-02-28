@@ -71,6 +71,7 @@ export default function SettingsPage() {
     updateProfile({
       notifications: { ...profile.notifications, [key]: value },
     });
+    toast({ title: "Settings saved", description: `Notification preference updated.` });
   };
 
   const toggleTheme = () => {
@@ -78,6 +79,7 @@ export default function SettingsPage() {
     setDarkMode(next);
     document.documentElement.classList.toggle("dark", next);
     localStorage.setItem(THEME_KEY, next ? "dark" : "light");
+    toast({ title: "Settings saved", description: `${next ? "Dark" : "Light"} mode enabled.` });
   };
 
   const handleClearAll = () => {

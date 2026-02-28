@@ -584,6 +584,14 @@ function Step4Confirm({
         })}
       </div>
 
+      {/* Shimmer skeleton while matching */}
+      {!matchComplete && matchingSteps.length > 0 && (
+        <div className="space-y-3 animate-fade-in">
+          <div className="h-28 rounded-xl bg-zinc-900 border border-zinc-800 shimmer" />
+          <div className="h-10 rounded-lg bg-zinc-900 border border-zinc-800 shimmer" style={{ animationDelay: "200ms" }} />
+        </div>
+      )}
+
       {/* Result card */}
       {matchComplete && (
         <div className="animate-slide-in-up bg-zinc-900 border border-zinc-800 rounded-xl p-4 space-y-3">

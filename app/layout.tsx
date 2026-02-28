@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { BottomNav } from "@/components/bottom-nav";
+import { SplashScreen } from "@/components/splash-screen";
 import { Toaster } from "@/components/ui/toaster";
 
 const inter = Inter({
@@ -31,6 +32,7 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <body className={`${inter.variable} font-sans antialiased bg-[#0A0A0B] text-zinc-100`}>
+        <SplashScreen />
         <main className="min-h-screen pb-20">{children}</main>
         <BottomNav />
         <Toaster />
