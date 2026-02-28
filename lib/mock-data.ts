@@ -5,7 +5,7 @@ export const brands: Brand[] = [
     id: "milwaukee",
     name: "Milwaukee",
     color: "#DB0032",
-    serialPrefixes: ["M18", "M12"],
+    serialPrefixes: ["M18", "M12", "2"],
     defaultWarrantyYears: 5,
     policyText:
       "Milwaukee power tools are covered by a 5-year limited warranty from date of purchase.",
@@ -14,7 +14,7 @@ export const brands: Brand[] = [
     id: "makita",
     name: "Makita",
     color: "#00A8A8",
-    serialPrefixes: ["BSS", "BL", "DHS"],
+    serialPrefixes: ["DH", "DF", "BL", "HP", "GA"],
     defaultWarrantyYears: 3,
     policyText:
       "Makita power tools carry a 3-year warranty when registered within 30 days of purchase, otherwise 1 year.",
@@ -23,7 +23,7 @@ export const brands: Brand[] = [
     id: "husqvarna",
     name: "Husqvarna",
     color: "#FF6B00",
-    serialPrefixes: ["HVA", "HUS"],
+    serialPrefixes: ["HUS", "115", "120", "125", "130"],
     defaultWarrantyYears: 2,
     policyText:
       "Husqvarna products are covered by a 2-year consumer warranty, extendable up to 5 years if registered.",
@@ -32,7 +32,7 @@ export const brands: Brand[] = [
     id: "stihl",
     name: "Stihl",
     color: "#F37A1F",
-    serialPrefixes: ["STL", "MS"],
+    serialPrefixes: ["MS", "HS", "BG", "BR"],
     defaultWarrantyYears: 2,
     policyText:
       "Stihl products carry a 2-year domestic consumer warranty from date of purchase.",
@@ -41,7 +41,7 @@ export const brands: Brand[] = [
     id: "dewalt",
     name: "DeWalt",
     color: "#FEBD17",
-    serialPrefixes: ["DCF", "DCD", "DCS"],
+    serialPrefixes: ["DCD", "DCF", "DCS", "DWE"],
     defaultWarrantyYears: 3,
     policyText:
       "DeWalt power tools are backed by a 3-year limited warranty covering defects in material and workmanship.",
@@ -50,10 +50,10 @@ export const brands: Brand[] = [
     id: "bosch",
     name: "Bosch",
     color: "#005DAA",
-    serialPrefixes: ["GBH", "GSB", "GWS"],
-    defaultWarrantyYears: 3,
+    serialPrefixes: ["GBH", "GSB", "GWS", "PSB"],
+    defaultWarrantyYears: 6,
     policyText:
-      "Bosch professional power tools are covered by a 3-year warranty from date of purchase.",
+      "Bosch professional power tools are covered by a 6-year warranty from date of purchase.",
   },
 ];
 

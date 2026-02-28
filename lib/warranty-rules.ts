@@ -1,4 +1,102 @@
-import { WarrantyPolicy } from "./types";
+import { addYears } from "date-fns";
+import { ToolCategory, WarrantyPolicy } from "./types";
+
+export interface WarrantyCalculation {
+  warrantyEndDate: string;
+  durationYears: number;
+  warnings: string[];
+}
+
+/**
+ * Calculate warranty expiry based on brand-specific rules, tool category,
+ * and registration status.
+ */
+export function calculateWarrantyExpiry(opts: {
+  brandId: string;
+  category: ToolCategory;
+  purchaseDate: string;
+  isRegistered?: boolean;
+}): WarrantyCalculation {
+  const { brandId, category, purchaseDate, isRegistered } = opts;
+  const purchase = new Date(purchaseDate);
+  const warnings: string[] = [];
+  let durationYears: number;
+
+  switch (brandId) {
+    case "milwaukee": {
+      if (category === "battery") {
+        durationYears = 2;
+      } else if (category === "hand_tool") {
+        durationYears = 3;
+      } else {
+        durationYears = 5;
+      }
+      break;
+    }
+
+    case "makita": {
+      const daysSincePurchase = Math.floor(
+        (Date.now() - purchase.getTime()) / (1000 * 60 * 60 * 24)
+      );
+      if (isRegistered) {
+        durationYears = 3;
+      } else if (daysSincePurchase <= 30) {
+        durationYears = 1;
+        warnings.push(
+          "Register on MyMakita within 30 days of purchase to get 3 years instead of 1"
+        );
+      } else {
+        durationYears = 1;
+        warnings.push(
+          "Registration window has passed — warranty is 1 year. Under Australian Consumer Law you may still have additional rights."
+        );
+      }
+      break;
+    }
+
+    case "dewalt": {
+      durationYears = 3;
+      break;
+    }
+
+    case "bosch": {
+      durationYears = 6;
+      break;
+    }
+
+    case "stihl": {
+      durationYears = 2;
+      break;
+    }
+
+    case "husqvarna": {
+      if (isRegistered) {
+        durationYears = 5;
+        warnings.push(
+          "5-year warranty requires annual servicing by an authorised Husqvarna dealer"
+        );
+      } else {
+        durationYears = 2;
+        warnings.push(
+          "Register your product to extend warranty from 2 years up to 5 years"
+        );
+      }
+      break;
+    }
+
+    default: {
+      durationYears = warrantyPolicies[brandId]?.durationYears ?? 2;
+    }
+  }
+
+  const endDate = addYears(purchase, durationYears);
+
+  return {
+    warrantyEndDate: endDate.toISOString().split("T")[0],
+    durationYears,
+    warnings,
+  };
+}
 
 export const warrantyPolicies: Record<string, WarrantyPolicy> = {
   milwaukee: {
@@ -177,12 +275,12 @@ export const warrantyPolicies: Record<string, WarrantyPolicy> = {
   },
   bosch: {
     brandId: "bosch",
-    title: "Bosch 3-Year Professional Warranty",
-    durationYears: 3,
+    title: "Bosch 6-Year Professional Warranty",
+    durationYears: 6,
     clauses: [
       {
         section: "Section 1 — Warranty",
-        text: "Bosch warrants this professional power tool against defects in materials and workmanship for a period of three (3) years from the date of purchase.",
+        text: "Bosch warrants this professional power tool against defects in materials and workmanship for a period of six (6) years from the date of purchase.",
       },
       {
         section: "Section 2 — Service",
