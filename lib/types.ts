@@ -8,8 +8,6 @@ export type ToolCategory =
   | "grinder"
   | "driver"
   | "chainsaw"
-  | "hand_tool"
-  | "battery"
   | "other";
 
 export interface Tool {
@@ -23,11 +21,9 @@ export interface Tool {
   purchaseStore: string;
   purchasePrice: number;
   receiptImageUrl?: string;
-  receiptImageBase64?: string;
   warrantyType: WarrantyType;
   warrantyCardNumber?: string;
   warrantyCardImageUrl?: string;
-  warrantyCardImageBase64?: string;
   warrantyStartDate: string;
   warrantyEndDate: string;
   matchConfidence?: number;

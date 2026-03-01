@@ -12,7 +12,6 @@ import {
   Trash2,
   ImageIcon,
 } from "lucide-react";
-import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
@@ -178,8 +177,8 @@ export default function ToolDetailPage() {
       <div className="mb-5">
         <h3 className="text-sm font-semibold text-zinc-300 mb-3">Documents</h3>
         <div className="flex gap-3">
-          <DocThumb label="Receipt" imageSrc={tool.receiptImageBase64} />
-          <DocThumb label="Warranty Card" imageSrc={tool.warrantyCardImageBase64} />
+          <DocThumb label="Receipt" />
+          <DocThumb label="Warranty Card" />
         </div>
       </div>
 
@@ -288,23 +287,7 @@ function InfoCard({
   );
 }
 
-function DocThumb({ label, imageSrc }: { label: string; imageSrc?: string }) {
-  if (imageSrc) {
-    return (
-      <div className="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl overflow-hidden">
-        <Image
-          src={imageSrc}
-          alt={label}
-          width={200}
-          height={96}
-          className="w-full h-24 object-cover"
-          unoptimized
-        />
-        <p className="text-xs text-zinc-500 text-center py-2">{label}</p>
-      </div>
-    );
-  }
-
+function DocThumb({ label }: { label: string }) {
   return (
     <div className="flex-1 bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col items-center justify-center gap-2">
       <div className="w-10 h-10 rounded-lg bg-zinc-800 flex items-center justify-center">
